@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>【译】用 Webworker 让 React 更快 · GitBook</title>
+        <title>【译】用 WebWorker 为 React 提速 · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -56,6 +56,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="types-react-application-state.html" />
     
     
     <link rel="prev" href="change-detection.html" />
@@ -164,7 +166,52 @@
                 <a href="webworker-react.html">
             
                     
-                    【译】用 Webworker 让 React 更快
+                    【译】用 WebWorker 为 React 提速
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="types-react-application-state.html">
+            
+                <a href="types-react-application-state.html">
+            
+                    
+                    【译】React中的5种State类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../service-worker/README.md">
+            
+                <span>
+            
+                    
+                    Service worker 相关
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../service-worker/1-whoiam.html">
+            
+                <a href="../service-worker/1-whoiam.html">
+            
+                    
+                    Service worker 诞生记
             
                 </a>
             
@@ -207,7 +254,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >【译】用 Webworker 让 React 更快</a>
+        <a href=".." >【译】用 WebWorker 为 React 提速</a>
     </h1>
 </div>
 
@@ -222,7 +269,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x3010;&#x8BD1;&#x3011;&#x7528;-web-worker-&#x8BA9;-react-&#x66F4;&#x5FEB;">&#x3010;&#x8BD1;&#x3011;&#x7528; Web Worker &#x8BA9; React &#x66F4;&#x5FEB;</h1><blockquote><p><a href="http://blog.nparashuram.com/2016/02/using-webworkers-to-make-react-faster.html" target="_blank">&#x539F;&#x6587;&#x5730;&#x5740;</a>  <a href="http://web-perf.github.io/react-worker-dom/" target="_blank">demo</a></p></blockquote><p>&#x6807;&#x51C6;&#x7684; React &#x5E94;&#x7528;&#x7531;&#x4E24;&#x90E8;&#x5206;&#x6784;&#x6210;&#x2014;<a href="https://www.npmjs.com/package/react" target="_blank">React library </a>&#x8D1F;&#x8D23;&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x7684;&#x590D;&#x6742;&#x7684; Virtual DOM &#x8BA1;&#x7B97;&#xFF0C;<a href="https://www.npmjs.com/package/react-dom" target="_blank">React-Dom </a>&#x8D1F;&#x8D23;&#x4E0E;&#x6D4F;&#x89C8;&#x5668;&#x771F;&#x5B9E; DOM &#x4EA4;&#x4E92;&#x6765;&#x5C55;&#x793A;&#x5185;&#x5BB9;&#x3002;&#x8FD9;&#x4E24;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x901A;&#x8FC7; script &#x6807;&#x7B7E;&#x5F15;&#x5165;&#x5230;&#x9875;&#x9762;&#x5E76;&#x8FD0;&#x884C;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E0A;&#x7684;&#x3002;</p><p>&#x5728;&#x51E0;&#x5468;&#x524D;&#x6211;&#x66FE;&#x5199;&#x4E86;&#x4E00;&#x7247;<a href="http://blog.nparashuram.com/2015/12/react-web-worker-renderer.html" target="_blank">&#x6587;&#x7AE0;</a>&#xFF0C;&#x4E5F;&#x5199;&#x4E86;&#x4E00;&#x4E9B;&#x8BD5;&#x9A8C;&#x6027;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5C1D;&#x8BD5;&#x5728; Web Worker &#x4E2D;&#x8FD0;&#x884C; React Virtual DOM &#x7684;&#x76F8;&#x5173;&#x8BA1;&#x7B97;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F20;&#x7EDF;&#x7684;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E2D;&#x8FDB;&#x884C;&#x3002;&#x6211;&#x4E5F;&#x505A;&#x4E86;&#x4E00;&#x4E9B;&#x6027;&#x80FD;&#x6D4B;&#x8BD5;&#x6765;&#x5206;&#x6790;&#x53EF;&#x80FD;&#x5F71;&#x54CD;&#x6E32;&#x67D3;&#x901F;&#x5EA6;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x6BD4;&#x5982;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x7B49;&#x3002;</p><h2 id="&#x4E4B;&#x524D;&#x4EE5;&#x4E3A;">&#x4E4B;&#x524D;&#x4EE5;&#x4E3A;</h2><p>&#x4E4B;&#x524D;&#x7684;&#x5B9E;&#x9A8C;&#x7ED3;&#x8BBA;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x7EDD;&#x5BF9;&#x7684;&#x8BF4; Web Worker &#x53EF;&#x4EE5;&#x5BF9;&#x6E32;&#x67D3;&#x901F;&#x7387;&#x3002;&#x53EA;&#x6709;&#x5F53;&#x5927;&#x91CF;&#x7684;&#x8282;&#x70B9;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;Web Worker &#x63D0;&#x5347;&#x6E32;&#x67D3;&#x6027;&#x80FD;&#x624D;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x6548;&#x679C;&#x3002;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x5F53;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x975E;&#x5E38;&#x5C11;&#x7684;&#x65F6;&#x5019;(&#x5927;&#x591A;&#x6570;&#x5E94;&#x7528;&#x4E2D;)&#xFF0C;Web Worker &#x7684;&#x6027;&#x80FD;&#x53EF;&#x80FD;&#x8FD8;&#x4E0D;&#x5982; React &#x672C;&#x8EAB;&#x5B9E;&#x73B0;&#x3002;</p><h2 id="&#x5176;&#x5B9E;&#x5E76;&#x4E0D;&#x5B8C;&#x5168;&#x5BF9;">&#x5176;&#x5B9E;&#x5E76;&#x4E0D;&#x5B8C;&#x5168;&#x5BF9;</h2><p>Web Worker &#x4E4B;&#x6240;&#x4EE5;&#x6162;&#x7684;&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;&#x5927;&#x91CF;&#x7684;&#x65F6;&#x95F4;&#x82B1;&#x8D39;&#x5728;&#x4E86; Web Worker &#x4E0E; &#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x6D88;&#x606F;&#x901A;&#x4FE1;&#x4E0A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x8BD5;&#x56FE;&#x627E;&#x4E00;&#x4E2A;&#x201C;&#x901A;&#x4FE1;&#x6700;&#x4F18;&#x65B9;&#x6848;&#x201D;&#xFF0C;&#x7F51;&#x4E0A;&#x6709;&#x4E0D;&#x5C11;&#x4EBA;&#x7ED9;&#x6211;&#x63D0;&#x4E86;&#x5B9D;&#x8D35;&#x7ECF;&#x9A8C;&#xFF1A;</p><p>1.<a href="https://github.com/facebook/react/issues/3092#issuecomment-161471481" target="_blank"> &#x7B2C;&#x4E00;&#x6761;&#x5EFA;&#x8BAE; </a>&#x662F;&#x4F20;&#x9012;&#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019;&#x7528;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Passing_data_by_transferring_ownership_%28transferable_objects%29" target="_blank"> transferable objects </a>&#x6765;&#x4EE3;&#x66FF; JSON&#x3002;&#x5728; Worker &#x548C;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#xFF0C;&#x6211;&#x60F3;&#x8981;&#x4F20;&#x9012;&#x7684;&#x88AB;&#x64CD;&#x4F5C; DOM &#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x9700;&#x8981;&#x5236;&#x5B9A;&#x4E00;&#x4E2A;&#x516C;&#x5171;&#x7684;&#x534F;&#x8BAE;&#x3002;</p><p>2.<a href="https://twitter.com/nolanlawson/status/672486553567019009" target="_blank"> &#x7B2C;&#x4E8C;&#x6761;&#x5EFA;&#x8BAE; </a>&#x662F;&#x76F4;&#x63A5;&#x4F20;&#x9012;&#x4FE1;&#x606F;&#x7684;&#x65F6;&#x5019;&#x7528;<code>JSON.stringify</code>&#xFF0C;&#x6211;&#x731C;&#x8FD9;&#x5176;&#x5B9E;&#x548C; transferable objects &#x7C7B;&#x4F3C;&#xFF0C;&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x6761;&#x6765;&#x81EA; IndexedDB &#x4F5C;&#x8005;&#x7684;<a href="https://code.google.com/p/chromium/issues/detail?id=536620#c11" target="_blank"> &#x8BC4;&#x8BBA; </a>&#x3002;</p><p><em>&#x7528;<code>stringifying</code>&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x548C; worker &#x4E2D;&#x4F20;&#x9012;&#x6D88;&#x606F;&#xFF0C;React on Web Worker &#x53EF;&#x4EE5;&#x6BD4; &#x4F20;&#x7EDF;&#x7684; React &#x66F4;&#x5FEB;&#x4E86;&#xFF0C;&#x800C;&#x4E14;&#x597D;&#x5904;&#x4F1A;&#x968F;&#x7740;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x589E;&#x52A0;&#x800C;&#x589E;&#x52A0;&#x3002;</em></p><p>&#x6211;&#x5199;&#x4E86;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E; <a href="http://npmjs.com/package/browser-perf" target="_blank">browser-perf</a> &#x81EA;&#x52A8;&#x5316;&#x811A;&#x672C;&#x7528;&#x6765;&#x8BA1;&#x7B97;&#x5E27;&#x901F;&#x7387;&#xFF0C;&#x4E0B;&#x56FE;&#x662F;&#x751F;&#x6210;&#x7684;&#x56FE;&#x8868;&#x3002;&#x6D4B;&#x8BD5;&#x5206;&#x522B;&#x8FD0;&#x884C;&#x5728; Mac pro &#x4E0A;&#x7684; Chrome &#x548C; Nexus &#x5B89;&#x5353;&#x8BBE;&#x5907;&#x3002;
+                                <h1 id="&#x3010;&#x8BD1;&#x3011;&#x7528;-web-worker-&#x4E3A;-react-&#x63D0;&#x901F;">&#x3010;&#x8BD1;&#x3011;&#x7528; Web Worker &#x4E3A; React &#x63D0;&#x901F;</h1><blockquote><p><a href="http://blog.nparashuram.com/2016/02/using-webworkers-to-make-react-faster.html" target="_blank">&#x539F;&#x6587;&#x5730;&#x5740;</a>  <a href="http://web-perf.github.io/react-worker-dom/" target="_blank">demo</a></p></blockquote><p>&#x6807;&#x51C6;&#x7684; React &#x5E94;&#x7528;&#x7531;&#x4E24;&#x90E8;&#x5206;&#x6784;&#x6210;&#x2014;<a href="https://www.npmjs.com/package/react" target="_blank">React library </a>&#x8D1F;&#x8D23;&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x7684;&#x590D;&#x6742;&#x7684; Virtual DOM &#x8BA1;&#x7B97;&#xFF0C;<a href="https://www.npmjs.com/package/react-dom" target="_blank">React-Dom </a>&#x8D1F;&#x8D23;&#x4E0E;&#x6D4F;&#x89C8;&#x5668;&#x771F;&#x5B9E; DOM &#x4EA4;&#x4E92;&#x6765;&#x5C55;&#x793A;&#x5185;&#x5BB9;&#x3002;&#x8FD9;&#x4E24;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x901A;&#x8FC7; script &#x6807;&#x7B7E;&#x5F15;&#x5165;&#x5230;&#x9875;&#x9762;&#x5E76;&#x8FD0;&#x884C;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E0A;&#x7684;&#x3002;</p><p>&#x5728;&#x51E0;&#x5468;&#x524D;&#x6211;&#x66FE;&#x5199;&#x4E86;&#x4E00;&#x7247;<a href="http://blog.nparashuram.com/2015/12/react-web-worker-renderer.html" target="_blank">&#x6587;&#x7AE0;</a>&#xFF0C;&#x4E5F;&#x5199;&#x4E86;&#x4E00;&#x4E9B;&#x8BD5;&#x9A8C;&#x6027;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5C1D;&#x8BD5;&#x5728; Web Worker &#x4E2D;&#x8FD0;&#x884C; React Virtual DOM &#x7684;&#x76F8;&#x5173;&#x8BA1;&#x7B97;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F20;&#x7EDF;&#x7684;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E2D;&#x8FDB;&#x884C;&#x3002;&#x6211;&#x4E5F;&#x505A;&#x4E86;&#x4E00;&#x4E9B;&#x6027;&#x80FD;&#x6D4B;&#x8BD5;&#x6765;&#x5206;&#x6790;&#x53EF;&#x80FD;&#x5F71;&#x54CD;&#x6E32;&#x67D3;&#x901F;&#x5EA6;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x6BD4;&#x5982;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x7B49;&#x3002;</p><h2 id="&#x4E4B;&#x524D;&#x4EE5;&#x4E3A;">&#x4E4B;&#x524D;&#x4EE5;&#x4E3A;</h2><p>&#x4E4B;&#x524D;&#x7684;&#x5B9E;&#x9A8C;&#x7ED3;&#x8BBA;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x7EDD;&#x5BF9;&#x7684;&#x8BF4; Web Worker &#x53EF;&#x4EE5;&#x5BF9;&#x6E32;&#x67D3;&#x901F;&#x7387;&#x3002;&#x53EA;&#x6709;&#x5F53;&#x5927;&#x91CF;&#x7684;&#x8282;&#x70B9;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;Web Worker &#x63D0;&#x5347;&#x6E32;&#x67D3;&#x6027;&#x80FD;&#x624D;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x6548;&#x679C;&#x3002;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x5F53;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x975E;&#x5E38;&#x5C11;&#x7684;&#x65F6;&#x5019;(&#x5927;&#x591A;&#x6570;&#x5E94;&#x7528;&#x4E2D;)&#xFF0C;Web Worker &#x7684;&#x6027;&#x80FD;&#x53EF;&#x80FD;&#x8FD8;&#x4E0D;&#x5982; React &#x672C;&#x8EAB;&#x5B9E;&#x73B0;&#x3002;</p><h2 id="&#x5176;&#x5B9E;&#x5E76;&#x4E0D;&#x5B8C;&#x5168;&#x5BF9;">&#x5176;&#x5B9E;&#x5E76;&#x4E0D;&#x5B8C;&#x5168;&#x5BF9;</h2><p>Web Worker &#x4E4B;&#x6240;&#x4EE5;&#x6162;&#x7684;&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;&#x5927;&#x91CF;&#x7684;&#x65F6;&#x95F4;&#x82B1;&#x8D39;&#x5728;&#x4E86; Web Worker &#x4E0E; &#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x6D88;&#x606F;&#x901A;&#x4FE1;&#x4E0A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x8BD5;&#x56FE;&#x627E;&#x4E00;&#x4E2A;&#x201C;&#x901A;&#x4FE1;&#x6700;&#x4F18;&#x65B9;&#x6848;&#x201D;&#xFF0C;&#x7F51;&#x4E0A;&#x6709;&#x4E0D;&#x5C11;&#x4EBA;&#x7ED9;&#x6211;&#x63D0;&#x4E86;&#x5B9D;&#x8D35;&#x7ECF;&#x9A8C;&#xFF1A;</p><p>1.<a href="https://github.com/facebook/react/issues/3092#issuecomment-161471481" target="_blank"> &#x7B2C;&#x4E00;&#x6761;&#x5EFA;&#x8BAE; </a>&#x662F;&#x4F20;&#x9012;&#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019;&#x7528;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Passing_data_by_transferring_ownership_%28transferable_objects%29" target="_blank"> transferable objects </a>&#x6765;&#x4EE3;&#x66FF; JSON&#x3002;&#x5728; Worker &#x548C;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#xFF0C;&#x6211;&#x60F3;&#x8981;&#x4F20;&#x9012;&#x7684;&#x88AB;&#x64CD;&#x4F5C; DOM &#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x9700;&#x8981;&#x5236;&#x5B9A;&#x4E00;&#x4E2A;&#x516C;&#x5171;&#x7684;&#x534F;&#x8BAE;&#x3002;</p><p>2.<a href="https://twitter.com/nolanlawson/status/672486553567019009" target="_blank"> &#x7B2C;&#x4E8C;&#x6761;&#x5EFA;&#x8BAE; </a>&#x662F;&#x76F4;&#x63A5;&#x4F20;&#x9012;&#x4FE1;&#x606F;&#x7684;&#x65F6;&#x5019;&#x7528;<code>JSON.stringify</code>&#xFF0C;&#x6211;&#x731C;&#x8FD9;&#x5176;&#x5B9E;&#x548C; transferable objects &#x7C7B;&#x4F3C;&#xFF0C;&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x6761;&#x6765;&#x81EA; IndexedDB &#x4F5C;&#x8005;&#x7684;<a href="https://code.google.com/p/chromium/issues/detail?id=536620#c11" target="_blank"> &#x8BC4;&#x8BBA; </a>&#x3002;</p><p><em>&#x7528;<code>stringifying</code>&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x548C; worker &#x4E2D;&#x4F20;&#x9012;&#x6D88;&#x606F;&#xFF0C;React on Web Worker &#x53EF;&#x4EE5;&#x6BD4; &#x4F20;&#x7EDF;&#x7684; React &#x66F4;&#x5FEB;&#x4E86;&#xFF0C;&#x800C;&#x4E14;&#x597D;&#x5904;&#x4F1A;&#x968F;&#x7740;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x589E;&#x52A0;&#x800C;&#x589E;&#x52A0;&#x3002;</em></p><p>&#x6211;&#x5199;&#x4E86;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E; <a href="http://npmjs.com/package/browser-perf" target="_blank">browser-perf</a> &#x81EA;&#x52A8;&#x5316;&#x811A;&#x672C;&#x7528;&#x6765;&#x8BA1;&#x7B97;&#x5E27;&#x901F;&#x7387;&#xFF0C;&#x4E0B;&#x56FE;&#x662F;&#x751F;&#x6210;&#x7684;&#x56FE;&#x8868;&#x3002;&#x6D4B;&#x8BD5;&#x5206;&#x522B;&#x8FD0;&#x884C;&#x5728; Mac pro &#x4E0A;&#x7684; Chrome &#x548C; Nexus &#x5B89;&#x5353;&#x8BBE;&#x5907;&#x3002;
 <img src="image/webworker-react/1.png">
 &#x5F53;&#x8282;&#x70B9;&#x6570;&#x91CF;&#x8D85;&#x8FC7;100&#x4E2A;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x533A;&#x522B;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x5F88;&#x660E;&#x663E;&#x4E86;&#xFF0C;&#x4E3A;&#x4E86;&#x8BA9;&#x533A;&#x522B;&#x66F4;&#x660E;&#x663E;&#xFF0C;&#x4E0B;&#x8868;&#x662F;&#x5728; pc chrome &#x4E0A;&#x5BF9;&#x6BD4;&#x7684;&#x5E27;&#x901F;&#x7387;&#x3002;
 <img src="image/webworker-react/2.png">
@@ -253,10 +300,14 @@
 
             
                 
-                <a href="change-detection.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 【译】各种框架中的变化检测">
+                <a href="change-detection.html" class="navigation navigation-prev " aria-label="Previous page: 【译】各种框架中的变化检测">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="types-react-application-state.html" class="navigation navigation-next " aria-label="Next page: 【译】React中的5种State类型">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -265,7 +316,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"【译】用 Webworker 让 React 更快","level":"1.3.2","depth":2,"previous":{"title":"【译】各种框架中的变化检测","level":"1.3.1","depth":2,"path":"react/change-detection.md","ref":"react/change-detection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"react/webworker-react.md","mtime":"2016-08-23T03:37:13.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-08-23T03:22:53.198Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"【译】用 WebWorker 为 React 提速","level":"1.3.2","depth":2,"next":{"title":"【译】React中的5种State类型","level":"1.3.3","depth":2,"path":"react/types-react-application-state.md","ref":"react/types-react-application-state.md","articles":[]},"previous":{"title":"【译】各种框架中的变化检测","level":"1.3.1","depth":2,"path":"react/change-detection.md","ref":"react/change-detection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"react/webworker-react.md","mtime":"2016-08-23T03:46:24.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-08T01:38:09.973Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

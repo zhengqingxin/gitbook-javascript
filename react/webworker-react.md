@@ -1,4 +1,4 @@
-# 【译】用 Web Worker 让 React 更快
+# 【译】用 Web Worker 为 React 提速
 > [原文地址](http://blog.nparashuram.com/2016/02/using-webworkers-to-make-react-faster.html)  [demo](http://web-perf.github.io/react-worker-dom/)
  
 标准的 React 应用由两部分构成—[React library ](https://www.npmjs.com/package/react)负责绝大部分的复杂的 Virtual DOM 计算，[React-Dom ](https://www.npmjs.com/package/react-dom)负责与浏览器真实 DOM 交互来展示内容。这两部分都是通过 script 标签引入到页面并运行在主线程上的。
