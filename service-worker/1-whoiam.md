@@ -1,4 +1,9 @@
+# Service Worker 诞生记
+> 目前 Web App 发展迅猛，在移动端我们也不断追求用 Web App 来替代原生 App 的方法，目前也已经取得了不小的成果，而离线能力一直是 Web App 的痛点，如何更好的提高离线能力，就是 Service Worker 主要解决的问题，然而用它可以做的事情还有很多，比如今年谷歌在 IO 大会上热烈推崇的[ Progressive Web App ](https://developers.google.com/web/progressive-web-apps/)，Service Worker 也是作为了一个非常核心的技术点。如何了解一个新技术，一般我都会从下面三个哲学问题入手。
+
 ## 我是谁？
+![](./image/1-whoiam/1.jpg)
+
 说 SW 之前，我们先了解一下 Web worker，[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers) 上对 Web worker 是这样定义的：
 
 > _Web Workers provide a simple means for web content to run scripts in background threads. The worker thread can perform tasks without interfering with the user interface. In addition, they can perform I/O using XMLHttpRequest (although the responseXML and channel attributes are always null). Once created, a worker can send messages to the JavaScript code that created it by posting messages to an event handler specified by that code (and vice versa.)_
@@ -12,12 +17,17 @@
 今天的主角 SW 是 Web worker 的一种，所以，现在知道我是谁了么？我是一个可以运行在浏览器后台的一个脚本。
 
 ## 从哪里来？
+![](./image/1-whoiam/2.jpg)
+
+
 我从哪里来？我来之前的世界是什么样的？在我们普通人印象中，Web App 一定是在线运行的，离线运行？开什么玩笑，即使是全宇宙最牛逼的 Web App，如果你加载不了它，那也是废废的。然而，永远不要低估一颗有梦想的心，我们已经很努力的来扩展 Web App 的离线能力，已经有很多种技术尝试，来解决这一问题，在 SW 提出之前，另外一个提供开发者离线体验的 API 叫做 App Cache。然而 App Cache 有些局限性，在使用的时候，它会给你预先规定一些条条框框的规则，如果你不遵守哪怕某一点规则，那你的 App 中就可能遇到各种问题，还例如它可以很容易地解决单页应用的问题，但是在多页应用上会很麻烦。从而，为了维护正义...
 
 SW 出现了，SW 的语法可能会比 App Cache 会复杂一些，但是你可以更细颗粒度的去处理缓存资源，有了它，你可以解决目前离线应用的问题，同时也可以做更多的事情，下面来看。
 
 ## 到哪里去？
-我将要解决什么问题？首先说，SW 本质上作为一个代理服务器坐落于 Web 应用和浏览器与网络之间，代理可以做什么？可以控制你的所有请求，所以说，SW 除了离线能力，SW 一定还可以做很多事情，下面是来自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API) 的介绍：
+![](./image/1-whoiam/3.jpg)
+
+将要解决什么问题？首先说，SW 本质上作为一个代理服务器坐落于 Web 应用和浏览器与网络之间，代理可以做什么？可以控制你的所有请求，所以说，SW 除了离线能力，SW 一定还可以做很多事情，下面是来自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API) 的介绍：
 
 * 后台数据同步
 * 响应其它源的资源请求
