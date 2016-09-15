@@ -9,3 +9,4 @@
 	* [【译】React中的5种State类型](react/types-react-application-state.md)
 * [Service worker 相关](service-worker/README.md)
 	* [Service worker 诞生记](service-worker/1-whoiam.md)
+	* [SW:Try me?](service-worker/2-howtoregister.md)
