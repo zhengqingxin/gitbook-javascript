@@ -10,3 +10,4 @@
 * [Service worker 相关](service-worker/README.md)
 	* [Service worker 诞生记](service-worker/1-whoiam.md)
 	* [SW:Try me?](service-worker/2-howtoregister.md)
+	* [生命周期](service-worker/5-lifecycle.md)
